@@ -56,10 +56,15 @@ class Airport {
         return true;
     }
 
-    public function sendPlane()
+    public function sendPlane(): bool
     {
+        if ($this->isParkingBusy || $this->isGasStationBusy) {
+            return false;
+        }
+
         $this->airplane->takeoff();
         $this->airplane = null;
+        return true;
     }
 
     public function planeIsReady()
